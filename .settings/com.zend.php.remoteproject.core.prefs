@@ -1,7 +1,7 @@
 Save\ Mode=ON_SAVE
 UploadFolder=/
 eclipse.preferences.version=1
-exclusionPatterns=.buildpath|.gitignore|.project|.settings/|LICENSE|README.md
+exclusionPatterns=.buildpath|.gitignore|.project|.settings/|LICENSE|README.md|sql/
 inclusionPatterns=**/*
 isLocalProjectEnabled=true
 isRemoteProjectEnabled=false

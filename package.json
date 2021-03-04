@@ -1,0 +1,25 @@
+{
+  "name": "my-webpack-project",
+  "version": "1.0.0",
+  "description": "My webpack project",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gilsonjoanelo/carrinho_compras.git"
+  },
+  "author": "Gilson Joanelo <gilsonjoanelo@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gilsonjoanelo/carrinho_compras/issues"
+  },
+  "homepage": "https://github.com/gilsonjoanelo/carrinho_compras#readme",
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {}
+}
