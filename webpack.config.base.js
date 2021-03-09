@@ -4,8 +4,8 @@ const FileManagerPlugin = require('filemanager-webpack-plugin');
 
 module.exports = {
   entry: {
-    login: ['./src/scripts/login.js', './src/scripts/cadastro.js'],
-    funcoes: ['./src/scripts/funcoesGerais.js'],
+    login: './src/scripts/login/index.js',
+    funcoes: './src/scripts/funcoes/index.js',
     theme_padrao: ['./src/content/padrao/index.css']
   },
   output: {
@@ -56,6 +56,11 @@ module.exports = {
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
       }
     ]
   }

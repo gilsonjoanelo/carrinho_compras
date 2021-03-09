@@ -26,7 +26,7 @@ class Configuracao
         http_response_code(405);
         $resultCode = new stdClass();
         $resultCode->sucesso = false;
-        $resultCode->mensagem = utf8_encode("O método selecionado não é permitido");
+        $resultCode->mensagem = "O método selecionado não é permitido";
         $resultCode->mensagemTipo = "E";
 
         echo json_encode($resultCode);
@@ -37,7 +37,7 @@ class Configuracao
         http_response_code(404);
         $resultCode = new stdClass();
         $resultCode->sucesso = false;
-        $resultCode->mensagem = utf8_encode("Você tentou acessar um recurso não disponível");
+        $resultCode->mensagem = "Você tentou acessar um recurso não disponível";
         $resultCode->mensagemTipo = "E";
 
         echo json_encode($resultCode);
@@ -48,7 +48,7 @@ class Configuracao
         http_response_code(401);
         $resultCode = new stdClass();
         $resultCode->sucesso = false;
-        $resultCode->mensagem = utf8_encode("Token de autenticação expirado");
+        $resultCode->mensagem = "Token de autenticação expirado";
         $resultCode->mensagemTipo = "E";
     
         echo json_encode($resultCode);
@@ -59,8 +59,8 @@ class Configuracao
         http_response_code(200);
         $resultCode = new stdClass();
         $resultCode->sucesso = false;
-        $resultCode->mensagem = utf8_encode("Ocorreu um falha não tratada na execução de sua solicitação. Tente novamente.");
-        $resultCode->mensagemProgramador = utf8_encode($e->getMessage());
+        $resultCode->mensagem = "Ocorreu um falha não tratada na execução de sua solicitação. Tente novamente.";
+        $resultCode->mensagemProgramador = $e->getMessage();
         $resultCode->mensagemTipo = "E";
     
         echo json_encode($resultCode);
@@ -81,7 +81,7 @@ class Configuracao
         http_response_code(200);
         $resultCode = new stdClass();
         $resultCode->sucesso = $mensagemTipo !== "E";
-        $resultCode->mensagem = utf8_encode($mensagem);
+        $resultCode->mensagem = $mensagem;
         $resultCode->mensagemTipo = $mensagemTipo;
         if ($dados != null) {
             $resultCode->dados = $dados;
