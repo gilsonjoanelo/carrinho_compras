@@ -1,5 +1,5 @@
 <?php
-include_once './includes/topo.inc.php'; 
+include_once '../shared/topo.inc.php'; 
 ?>
 <div class="row">
     <div class="col">
@@ -62,5 +62,5 @@ include_once './includes/topo.inc.php';
     </div>
 </div>
 <?php
-$jsFile = array("site/login.js", "site/cadastro.js");
-include_once './includes/rodape.inc.php'; 
+$jsFile = array("login.js");
+include_once '../shared/rodape.inc.php'; 

@@ -13,5 +13,12 @@ $("#formLogin").submit(function(e){
     });
     
     e.preventDefault();
-    console.log("login: ",  item);
+    if(!item.usuario || item.usuario === "") {
+
+    } else if(!item.senha || item.senha === "") {
+        
+    } else {
+
+    }
+    exibirNotificacao("dsds", "C");
 });
