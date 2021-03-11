@@ -1,1 +1,2 @@
-import './funcoesGerais'
+import './funcoesGerais';
+import './menu';

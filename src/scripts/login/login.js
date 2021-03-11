@@ -1,4 +1,4 @@
-$("#formLogin").submit(function(e){
+$(".buttonLogin").click(function(e){
     var item = {};
     $("form#formLogin :input").each(function(){
         if($(this).attr('name')) {
@@ -19,15 +19,17 @@ $("#formLogin").submit(function(e){
         exibirNotificacao("O campo Senha é de preenchimento obrigatório", "W");
     } else {
         invokeHttp(
-            "/controllers/homecontroller.php?methodName=efetuarLogin", 
+            "/controllers/autenticacaoController.php?methodName=efetuarLogin", 
             {
                 data: item,
                 method: "POST"
             }, 
             function(data){
                 var dados = JSON.parse(data);
+                console.log(dados);
                 if(dados.sucesso) {
-                    
+                    window.localStorage.setItem("CAR_TOKEN", dados.dados);
+                    window.location = "../home";
                 } else {
                     exibirNotificacao(dados.mensagem, dados.mensagemTipo);
                 }
@@ -37,5 +39,5 @@ $("#formLogin").submit(function(e){
 });
 
 $(".buttonCadastrar").click(function(e){
-    $("#modalCadastroUsuario").modal();
+    $("#modalCadastroUsuario").modal('show');
 });

@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     login: './src/scripts/login/index.js',
     funcoes: './src/scripts/funcoes/index.js',
+    home: './src/scripts/home/index.js',
     theme_padrao: ['./src/content/padrao/index.css']
   },
   output: {

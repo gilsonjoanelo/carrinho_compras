@@ -1,5 +1,7 @@
 <?php
 class Token {
+    private $JWT_PASS = "4be5811a27e6c4992d4994d64204cf7543c4fae4f173f9040301d2fa651a5990";
+
     public function createJWT($userId, $nome)
     {
         $header = json_encode([
@@ -7,18 +9,18 @@ class Token {
             'alg' => 'HS256'
         ]);
         $payload = json_encode([
-            'exp' => calculateJWTExpiration(), // calcular
+            'exp' => $this->calculateJWTExpiration(), // calcular
             'userId' => $userId,
             'name' => $nome
         ]);
     
-        $base64UrlHeader = base64UrlEncode($header);
-        $base64UrlPayload = base64UrlEncode($payload);
+        $base64UrlHeader = $this->base64UrlEncode($header);
+        $base64UrlPayload = $this->base64UrlEncode($payload);
     
         $data = $base64UrlHeader . "." . $base64UrlPayload;
-        $signature = hash_hmac('sha256', $data, JWT_PASS, true);
+        $signature = hash_hmac('sha256', $data, $this->JWT_PASS, true);
     
-        $base64UrlSignature = base64UrlEncode($signature);
+        $base64UrlSignature = $this->base64UrlEncode($signature);
     
         $jwt = $base64UrlHeader . "." . $base64UrlPayload . "." . $base64UrlSignature;
     
@@ -30,17 +32,17 @@ class Token {
         try {
     
             $tokenParts = explode('.', $jwt);
-            $header = base64UrlDecode($tokenParts[0]);
-            $payload = base64UrlDecode($tokenParts[1]);
+            $header = $this->base64UrlDecode($tokenParts[0]);
+            $payload = $this->base64UrlDecode($tokenParts[1]);
             $signatureProvided = $tokenParts[2];
     
-            $base64UrlHeader = base64UrlEncode($header);
-            $base64UrlPayload = base64UrlEncode($payload);
+            $base64UrlHeader = $this->base64UrlEncode($header);
+            $base64UrlPayload = $this->base64UrlEncode($payload);
     
             $data = $base64UrlHeader . "." . $base64UrlPayload;
-            $signature = hash_hmac('sha256', $data, JWT_PASS, true);
+            $signature = hash_hmac('sha256', $data, $this->JWT_PASS, true);
     
-            $base64UrlSignature = base64UrlEncode($signature);
+            $base64UrlSignature = $this->base64UrlEncode($signature);
     
             $jwtTemp = $base64UrlHeader . "." . $base64UrlPayload . "." . $base64UrlSignature;
     
@@ -78,7 +80,7 @@ class Token {
         } catch (Exception $ex) {
             $retorno = new stdClass();
             $retorno->isExpirado = true;
-            $retorno->isValido = fal;
+            $retorno->isValido = false;
             $retorno->data = "";
             return $retorno;
         }
@@ -86,7 +88,7 @@ class Token {
 
     public function getBearerToken()
     {
-        $headers = getAuthorizationHeader();
+        $headers = $this->getAuthorizationHeader();
         // HEADER: Get the access token from the header
         if (! empty($headers)) {
             if (preg_match('/Bearer\s(\S+)/', $headers, $matches)) {

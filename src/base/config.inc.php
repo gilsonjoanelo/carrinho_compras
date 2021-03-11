@@ -80,7 +80,7 @@ class Configuracao
     {
         http_response_code(200);
         $resultCode = new stdClass();
-        $resultCode->sucesso = $mensagemTipo !== "E";
+        $resultCode->sucesso = $mensagemTipo !== "E" && $mensagemTipo !== "FU" && $mensagemTipo !== "FD" && $mensagemTipo !== "FI";
         $resultCode->mensagem = $mensagem;
         $resultCode->mensagemTipo = $mensagemTipo;
         if ($dados != null) {

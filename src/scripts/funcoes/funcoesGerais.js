@@ -53,20 +53,8 @@ window.exibirNotificacao = function (mensagem, mensagemTipo) {
 };
 
 window.invokeHttp = function(url, dados, successMethod, errorMethod) {
-    if (!dados.method || dados.method == "GET") {
-        $.get(url, function (result) {
-            successMethod(result);
-        })
-        .fail(function(xhr, status, error){
-            if($.isFunction(errorMethod)) {
-                errorMethod(status, error);
-            } else {
-                console.error('Ocorreu uma falha na tentativa de executar a requisição');
-                console.error('status: ', status);
-                console.error('error: ', error);
-            }
-        });
-    } else if (dados.method == "PUT" || dados.method == "POST") {
+    var token = 'Bearer ' + localStorage.getItem('CAR_TOKEN');
+    if (dados.method == "PUT" || dados.method == "POST") {
         var jsonData = JSON.stringify(dados.data);
         $.ajax({
             type: dados.method,
@@ -75,29 +63,41 @@ window.invokeHttp = function(url, dados, successMethod, errorMethod) {
             contentType: "application/json;charset=utf-8",
             //dataType: "json",
             success: successMethod,
+            headers: {"Authorization": token}
         })
         .fail(function(xhr, status, error){
-            if($.isFunction(errorMethod)) {
-                errorMethod(status, error);
+            if (xhr.status == 401) {
+                exibirNotificacao("A área solicitada requer autenticação. Efetue o login antes de continuar.", "W");
+                window.location = "/views/autenticacao";
             } else {
-                console.error('Ocorreu uma falha na tentativa de executar a requisição');
-                console.error('status: ', status);
-                console.error('error: ', error);
+                if($.isFunction(errorMethod)) {
+                    errorMethod(status, error);
+                } else {
+                    console.error('Ocorreu uma falha na tentativa de executar a requisição');
+                    console.error('status: ', status);
+                    console.error('error: ', error);
+                }
             }
         });
-    }  else if (method == "DELETE") {
+    }  else {
         $.ajax({
-            type: "DELETE",
+            type: dados.method,
             url: url,
-            success: successMethod
+            success: successMethod,
+            headers: {"Authorization": token}
         })
         .fail(function(xhr, status, error){
-            if($.isFunction(errorMethod)) {
-                errorMethod();
+            if (xhr.status == 401) {
+                exibirNotificacao("A área solicitada requer autenticação. Efetue o login antes de continuar.", "W");
+                window.location = "/views/autenticacao";
             } else {
-                console.error('Ocorreu uma falha na tentativa de executar a requisição');
-                console.error('status: ', status);
-                console.error('error: ', error);
+                if($.isFunction(errorMethod)) {
+                    errorMethod();
+                } else {
+                    console.error('Ocorreu uma falha na tentativa de executar a requisição');
+                    console.error('status: ', status);
+                    console.error('error: ', error);
+                }
             }
         });
     }

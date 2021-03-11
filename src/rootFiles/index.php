@@ -1,2 +1,2 @@
 <?php
-header('Location: views/home');
+header('Location: views/autenticacao');

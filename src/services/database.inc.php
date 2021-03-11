@@ -21,9 +21,9 @@ abstract class Database {
 
     protected function getRetorno() {
         $retorno = new stdClass();
-        $retorno->Sucesso = false;
-        $retorno->Mensagem = "";
-        $retorno->MensagemTipo = "E";
+        $retorno->sucesso = false;
+        $retorno->mensagem = "";
+        $retorno->mensagemTipo = "E";
         return $retorno;
     }
 }

@@ -1,6 +1,6 @@
-$("#formCadastro").submit(function(e){
+$(".buttonCadastro").click(function(e){
     var item = {};
-    $("form#formLogin :input").each(function(){
+    $("form#formCadastro :input").each(function(){
         if($(this).attr('name')) {
             if($(this).attr('type') == "checkbox") {
                 item[$(this).attr('name')] = this.checked;
@@ -17,9 +17,13 @@ $("#formCadastro").submit(function(e){
         exibirNotificacao("O campo Usuário é de preenchimento obrigatório", "W");
     } else if(!item.senha || item.senha === "") {
         exibirNotificacao("O campo Senha é de preenchimento obrigatório", "W");
+    } else if(!item.nome || item.nome === "") {
+        exibirNotificacao("O campo Nome é de preenchimento obrigatório", "W");
+    } else if(!item.email || item.email === "") {
+        exibirNotificacao("O campo E-mail é de preenchimento obrigatório", "W");
     } else {
         invokeHttp(
-            "/controllers/homecontroller.php?methodName=efetuarLogin", 
+            "/controllers/autenticacaoController.php?methodName=cadastrarUsuario", 
             {
                 data: item,
                 method: "POST"
@@ -27,7 +31,7 @@ $("#formCadastro").submit(function(e){
             function(data){
                 var dados = JSON.parse(data);
                 if(dados.sucesso) {
-                    
+                    $("#modalCadastroUsuario").modal('hide');
                 } else {
                     exibirNotificacao(dados.mensagem, dados.mensagemTipo);
                 }
