@@ -1,10 +1,21 @@
 <?php
 include '../services/database.inc.php';
+include '../models/usuario.inc.php';
 
 class UsuarioDao extends Database {
     
     function __construct() {
         parent::__construct();
+    }
+
+    public function getById($id): UsuarioVM {
+        $retorno = parent::getRetorno();
+        $sql = "SELECT ";
+        $sql .= "id, nome, senha, email, dataAlteracao, dataInclusao ";
+        $sql .= "FROM usuarios WHERE id = $id";
+        $stmp = parent::getConexao()->prepare($sql);
+        $stmp->execute();
+        return $stmp->fetchObject('UsuarioVM');
     }
 
     public function efetuarLogin($data, $config) {

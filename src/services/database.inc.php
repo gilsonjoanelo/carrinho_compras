@@ -24,6 +24,7 @@ abstract class Database {
         $retorno->sucesso = false;
         $retorno->mensagem = "";
         $retorno->mensagemTipo = "E";
+        $retorno->rowsCount = 0;
         return $retorno;
     }
 }

@@ -28,6 +28,7 @@ module.exports = {
             { source: path.resolve(__dirname, 'src/controllers'), destination: path.resolve(__dirname, "dist/controllers") },
             { source: path.resolve(__dirname, 'src/services'), destination: path.resolve(__dirname, "dist/services") },
             { source: path.resolve(__dirname, 'src/views'), destination: path.resolve(__dirname, "dist/views") },
+            { source: path.resolve(__dirname, 'src/models'), destination: path.resolve(__dirname, "dist/models") },
 
             { source: path.resolve(__dirname, 'node_modules/jquery/dist/*.*'), destination: path.resolve(__dirname, "dist/scripts") },
             { source: path.resolve(__dirname, 'node_modules/bootstrap/dist/js/*.*'), destination: path.resolve(__dirname, "dist/scripts") },

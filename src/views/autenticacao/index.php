@@ -15,10 +15,6 @@ include_once '../shared/topo.inc.php';
                 <label>Senha</label>
                 <input type="password" class="form-control" name="senha">
             </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" name="isManterLogado">
-                <label class="form-check-label">Mater logado</label>
-            </div>
             <button type="button" class="btn btn-primary buttonLogin">Entrar</button>
             <button type="button" class="btn btn-primary buttonCadastrar">Cadastrar-se</button>
         </form>
