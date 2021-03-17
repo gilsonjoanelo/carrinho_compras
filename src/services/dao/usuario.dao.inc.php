@@ -1,6 +1,6 @@
 <?php
-include '../services/database.inc.php';
-include '../models/usuario.inc.php';
+require '../services/database.inc.php';
+require '../models/usuario.model.inc.php';
 
 class UsuarioDao extends Database {
     

@@ -29,7 +29,7 @@ $(".buttonLogin").click(function(e){
                 console.log(dados);
                 if(dados.sucesso) {
                     window.localStorage.setItem("CAR_TOKEN", dados.dados);
-                    window.location = "../home";
+                    window.location = "../produtos";
                 } else {
                     exibirNotificacao(dados.mensagem, dados.mensagemTipo);
                 }

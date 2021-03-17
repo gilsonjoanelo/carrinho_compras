@@ -7,12 +7,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/views/home">Carrinho de Compras</a>
+      <a class="navbar-brand" href="/views/produtos">Carrinho de Compras</a>
     </div>
 
     <div class="collapse navbar-collapse" id="menu-carrinho-compras">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/views/home">Produtos <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="/views/produtos">Produtos <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

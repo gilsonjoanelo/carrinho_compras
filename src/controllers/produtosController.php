@@ -1,14 +1,14 @@
 <?php
-include '../base/config.inc.php';
-include '../base/token.inc.php';
+require '../base/config.inc.php';
+require '../base/token.inc.php';
 
 $config = new Configuracao();
 $token = new Token();
 $tokenData = $token->getBearerToken();
 $validacaoRetorno = $token->validateJWT($tokenData);
 if($validacaoRetorno->isValido) {
-    include '../models/produto.model.inc.php';
-    include '../services/dao/produto.dao.inc.php';
+    require '../models/produto.model.inc.php';
+    require '../services/dao/produto.dao.inc.php';
     $dao = new ProdutoDao();
 
     if($config->getMethod() == "GET") {
@@ -38,6 +38,21 @@ if($validacaoRetorno->isValido) {
             } catch (Exception $e) {
                 $config->setErroInterno($e);
             }
+        } else if($config->getMethodName() == "getFabricanteLista") {
+            try {
+
+                require '../models/fabricante.model.inc.php';
+                require '../services/dao/fabricante.dao.inc.php';
+                $daoFabricante = new FabricanteDao();
+                $orders = "nome ASC";
+                $fields = "id, nome";
+                $retorno = $daoFabricante->retornarLista($fields, $orders);
+                $config->setRetorno($retorno->mensagem, $retorno->mensagemTipo, $retorno->data);
+            } catch (Exception $e) {
+                $config->setErroInterno($e);
+            }
+        } else {
+            $config->setNaoEncontrado();
         }
     } else if($config->getMethod() == "POST" || $config->getMethod() == "PUT") {
         try {

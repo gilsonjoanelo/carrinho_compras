@@ -1,5 +1,5 @@
 <?php
-include '../base/config.inc.php';
+require '../base/config.inc.php';
 
 $config = new Configuracao();
 if($config->getMethod() == "POST") {
@@ -8,11 +8,11 @@ if($config->getMethod() == "POST") {
             $_SESSION["CAR_LOGADO"] = "F";
             $data = file_get_contents('php://input');
             if($config->isJson($data)) {
-                include '../services/dao/usuario.dao.inc.php';
+                require '../services/dao/usuario.dao.inc.php';
                 $dao = new UsuarioDao();
                 $retorno = $dao->efetuarLogin($data, $config);
                 if($retorno->sucesso) {
-                    include '../base/token.inc.php';
+                    require '../base/token.inc.php';
                     $token = new Token();
                     $tokenValue = $token->createJWT($retorno->data->UsuarioID, $retorno->data->UsuarioNome);
                     $config->setRetorno($retorno->mensagem, $retorno->mensagemTipo, $tokenValue);
@@ -31,7 +31,7 @@ if($config->getMethod() == "POST") {
         try {
             $data = file_get_contents('php://input');
             if($config->isJson($data)) {
-                include '../services/dao/usuario.dao.inc.php';
+                require '../services/dao/usuario.dao.inc.php';
                 $dao = new UsuarioDao();
                 $retorno = $dao->cadastrarUsuario($data, $config);
                 $config->setRetorno($retorno->mensagem, $retorno->mensagemTipo);

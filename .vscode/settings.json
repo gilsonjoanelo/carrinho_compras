@@ -1,4 +1,10 @@
 {
     "php.validate.executablePath": "C:\\xampp\\php\\php.exe",
     "php.executablePath": "c:\\xampp\\php\\php.exe",
+    "files.exclude": {
+        "**/.vscode": true,
+        "**/dist": true,
+        "**/node_modules": true,
+        "**/output": true
+    },
 }
