@@ -1,2 +1,0 @@
-import './cadastro';
-import './login';

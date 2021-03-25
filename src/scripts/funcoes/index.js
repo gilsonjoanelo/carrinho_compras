@@ -1,2 +1,0 @@
-import './funcoesGerais';
-import './menu';
